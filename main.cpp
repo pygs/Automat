@@ -14,7 +14,7 @@ using std::setprecision;
 string produkty[10] = {"Kajzerka        ", "Bulka z boczkiem", "Paluch z serem  ", "Pizzerka         ", "Chipsy          ", "Pepsi           ", "Kawa            ", "Woda            ", "Mirinda         ", "Riviva          "};
 double cena[10] = {0.49, 1.10, 1.10, 2.20, 4.29, 1.80, 2.50, 0.69, 1.80, 2.49};
 int ilosc[10] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
-int wybor, wybor2, i, k, wybor4, produkt, dodaj, j, kup;
+int wybor, wybor2, i, k, wybor4, produkt, dodaj, j, kup, usun;
 double mamona, pln, eur, dol, zaplata;
 string haslo;
 
@@ -102,8 +102,9 @@ int main()
                 system("cls");
                 if(zaplata<mamona)
                 {
-                    cout << "Dziekujemy za zakupy";
+                    cout << "Dziekujemy za zakup!";
                     mamona -= zaplata;
+                    ilosc[kup-1] -= ilosc[10];
                     getch();
                 }
                 else
@@ -116,6 +117,7 @@ int main()
             {
                 system("cls");
                 cout << "Brak produktu lub za duza ilosc kupna" << endl;
+                getch();
             }
     }
         else if(wybor==77687)
@@ -129,7 +131,8 @@ int main()
                 do
                 {
                     cout << "1. Dodaj produkt" << endl;
-                    cout << "2. Wyjdz" << endl;
+                    cout << "2. Usun produkt" << endl;
+                    cout << "3. Wyjdz" << endl;
                     cin >> wybor4;
                     if(wybor4==1)
                     {
@@ -148,8 +151,25 @@ int main()
                         ilosc[produkt-1] += dodaj;
                         system("cls");
                     }
+                    else if(wybor4==2)
+                    {
+                        system("cls");
+                        cout << "Lp. \t Ilosc: \t Produkt: " << endl;
+                        for(k=0; k<10; k++)
+                        {
+                            cout << k+1 << "\t " << ilosc[k] << "\t \t " << produkty[k] << endl;
+                        }
+                        cout << "Usun: ";
+                        cin >> produkt;
+                        system("cls");
+                        cout << produkty[produkt-1] << endl;
+                        cout << "Ile chcesz usunac?" << endl;
+                        cin >> usun;
+                        ilosc[produkt-1] -= usun;
+                        system("cls");
+                    }
                 }
-                while(wybor4!=2);
+                while(wybor4!=3);
             }
         }
     }
